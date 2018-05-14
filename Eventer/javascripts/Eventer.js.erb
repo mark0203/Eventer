@@ -1,0 +1,25 @@
+(function( eventInfo, $, undefined ) {
+
+	Eventer.execute = function() {
+		// forced tap.
+		var evtS = new Event("touchstart");
+		evtS.clientX = 0;
+		evtS.clientY = 0;
+		var evtE = new Event("touchend");
+		evtE.clientX = 0;
+		evtE.clientY = 0;
+		eventInfo.element.dispatchEvent(evtS);
+		setTimeout(function() {
+			eventInfo.element.dispatchEvent(evtE);
+		},10);
+	};
+
+}( window.Eventer = window.Eventer || {} ));
+
+Eventer.element = arguments[0];
+
+Eventer.gesture = "<%=gesture%>";
+
+Eventer.options =  <%=options.to_json%>;
+
+Eventer.execute();
